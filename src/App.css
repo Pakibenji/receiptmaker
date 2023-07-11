@@ -11,3 +11,13 @@
   grid-template-rows: repeat(4, 1fr);
   gap: 0.5rem;
 }
+
+h3 {
+  font-size: 1.5rem;
+}
+
+a,
+a:visited {
+  color: #777;
+  font-size: 1.4rem;
+}

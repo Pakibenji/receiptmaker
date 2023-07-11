@@ -67,3 +67,9 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+input::placeholder {
+  font-weight: 500;
+  opacity: 0.5;
+  color: rgb(0, 0, 0);
+}

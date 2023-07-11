@@ -1,51 +1,110 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import { Estimate } from "../App";
+import styles from "./EstimateForm.module.css";
 export default function EstimateForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm<Estimate>();
 
+  const { fields, append, remove } = useFieldArray({
+    name: "tasks",
+    control,
+  });
+
   const onSubmit: SubmitHandler<Estimate> = (data) => console.log(data);
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="estimateNumber">Estimate Number</label>
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <label htmlFor="estimateNumber" className={styles.formlabel}>
+        Estimate Number
+      </label>
       <input
+        className={styles.forminput}
         type="text"
+        placeholder="Estimate Number"
         id="estimateNumber"
         {...register("estimateNumber", { required: true })}
       />
-      {errors.estimateNumber && <span>This field is required</span>}
-      <label htmlFor="estimateDate">Estimate Date</label>
+      {errors.estimateNumber && (
+        <span className={styles.formerror}>
+          Please, enter an estimate number
+        </span>
+      )}
+      <label htmlFor="estimateDate" className={styles.formlabel}>
+        Estimate Date
+      </label>
       <input
+        className={styles.forminput}
         type="date"
         id="estimateDate"
         {...register("estimateDate", { required: true })}
       />
-      {errors.estimateDate && <span>This field is required</span>}
-      <label htmlFor="paymentDate">Payment Date</label>
+      {errors.estimateDate && (
+        <span className={styles.formerror}>Please, enter an estimate date</span>
+      )}
+      <label htmlFor="paymentDate" className={styles.formlabel}>
+        Payment Date
+      </label>
       <input
+        className={styles.forminput}
         type="date"
         id="paymentDate"
         {...register("paymentDate", { required: true })}
       />
-      {errors.paymentDate && <span>This field is required</span>}
-      <label htmlFor="title">Title</label>
+      {errors.paymentDate && (
+        <span className={styles.formerror}>Please, enter a payment date</span>
+      )}
+      {fields.map((field, index) => {
+        return (
+          <div key={field.id}>
+            <section className={styles.task}>
+              <div>
+                <label htmlFor="taskReference" className={styles.formlabel}>
+                  Item Reference
+                </label>
+                <input
+                  className={styles.forminput}
+                  type="text"
+                  placeholder="Item Reference"
+                  id="taskReference"
+                  {...register(`tasks.${index}.reference` as const, {
+                    required: true,
+                  })}
+                />
+                <div className={styles.formerror}>
+                  {errors?.tasks?.[index]?.reference &&
+                    "Please, enter a reference"}
+                </div>
+              </div>
+            </section>
+          </div>
+        );
+      })}
+      <button
+        className={styles.formbutton}
+        type="button"
+        onClick={() =>
+          append({
+            reference: "12345",
+            description: "test",
+            quantity: 1,
+            unitPrice: 1,
+            vat: 1,
+            deposit: 1,
+          })
+        }
+      >
+        Add item
+      </button>
       <input
-        type="text"
-        id="title"
-        {...register("title", { required: true })}
+        className={styles.formbutton}
+        type="submit"
+        value="create estimate"
       />
-      {errors.title && <span>This field is required</span>}
-      <label htmlFor="tasks">Tasks</label>
-      <input
-        type="text"
-        id="tasks"
-        {...register("tasks", { required: true })}
-      />
-      {errors.tasks && <span>This field is required</span>}
-      <button type="submit">Submit</button>
     </form>
   );
 }
