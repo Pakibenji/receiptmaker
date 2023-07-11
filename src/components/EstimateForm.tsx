@@ -24,7 +24,6 @@ export default function EstimateForm({ onEstimateCreate }: estimateFormProps) {
   }
 
   return (
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <label htmlFor="estimateNumber" className={styles.formlabel}>
         Estimate Number
