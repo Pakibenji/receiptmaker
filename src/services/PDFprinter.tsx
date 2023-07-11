@@ -1,6 +1,6 @@
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { ReactNode, useRef } from "react";
+import { useRef } from "react";
 
 type PDFprinterProps = {
   children: React.ReactNode;
