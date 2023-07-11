@@ -2,6 +2,7 @@
   display: grid;
   grid-template-rows: auto;
   --font-size: 1.2rem;
+  --font-size-smaller: 1rem;
 }
 
 .formlabel {
@@ -29,4 +30,14 @@
   border-radius: 5px;
   font-size: var(--font-size);
   cursor: pointer;
+}
+.delete {
+  color: white;
+  background-color: red;
+  padding: 0.5rem;
+  font-size: var(--font-size-smaller);
+}
+.task {
+  margin: 2rem 0;
+  padding-bottom: 1rem;
 }

@@ -80,6 +80,103 @@ export default function EstimateForm() {
                     "Please, enter a reference"}
                 </div>
               </div>
+              <div>
+                <label htmlFor="taskDescription" className={styles.formlabel}>
+                  Item Description
+                </label>
+                <input
+                  className={styles.forminput}
+                  type="text"
+                  placeholder="Item Description"
+                  id="taskDescription"
+                  {...register(`tasks.${index}.description` as const, {
+                    required: true,
+                  })}
+                />
+                <div className={styles.formerror}>
+                  {errors?.tasks?.[index]?.description &&
+                    "Please, enter a description"}
+                </div>
+              </div>
+              <div>
+                <label htmlFor="taskQuantity" className={styles.formlabel}>
+                  Item Quantity
+                </label>
+                <input
+                  className={styles.forminput}
+                  type="number"
+                  placeholder="Item Quantity"
+                  id="taskQuantity"
+                  {...register(`tasks.${index}.quantity` as const, {
+                    required: true,
+                  })}
+                />
+                <div className={styles.formerror}>
+                  {errors?.tasks?.[index]?.quantity &&
+                    "Please, enter a quantity"}
+                </div>
+              </div>
+              <div>
+                <label htmlFor="taskUnitPrice" className={styles.formlabel}>
+                  Item Unit Price
+                </label>
+                <input
+                  className={styles.forminput}
+                  type="text"
+                  placeholder="Item Unit Price"
+                  id="taskUnitPrice"
+                  {...register(`tasks.${index}.unitPrice` as const, {
+                    required: true,
+                  })}
+                />
+                <div className={styles.formerror}>
+                  {errors?.tasks?.[index]?.unitPrice &&
+                    "Please, enter a unit price"}
+                </div>
+              </div>
+              <div>
+                <label htmlFor="taskVat" className={styles.formlabel}>
+                  Item VAT
+                </label>
+                <input
+                  className={styles.forminput}
+                  type="text"
+                  placeholder="Item VAT"
+                  id="taskVat"
+                  {...register(`tasks.${index}.vat` as const, {
+                    required: true,
+                  })}
+                />
+                <div className={styles.formerror}>
+                  {errors?.tasks?.[index]?.vat && "Please, enter a vat"}
+                </div>
+              </div>
+              <div>
+                <label htmlFor="taskDeposit" className={styles.formlabel}>
+                  Item Deposit
+                </label>
+                <input
+                  className={styles.forminput}
+                  type="text"
+                  placeholder="Item Deposit"
+                  id="taskDeposit"
+                  {...register(`tasks.${index}.deposit` as const, {
+                    required: true,
+                  })}
+                />
+                <div className={styles.formerror}>
+                  {errors?.tasks?.[index]?.deposit && "Please, enter a deposit"}
+                </div>
+              </div>
+              <button
+                className={styles.delete}
+                type="button"
+                onClick={() => {
+                  remove(index);
+                }}
+              >
+                Delete
+              </button>
             </section>
           </div>
         );
@@ -89,12 +186,12 @@ export default function EstimateForm() {
         type="button"
         onClick={() =>
           append({
-            reference: "12345",
-            description: "test",
+            reference: "",
+            description: "",
             quantity: 1,
-            unitPrice: 1,
-            vat: 1,
-            deposit: 1,
+            unitPrice: 0,
+            vat: 20,
+            deposit: 0,
           })
         }
       >
