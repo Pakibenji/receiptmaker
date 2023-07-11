@@ -1,4 +1,4 @@
-import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { Estimate } from "../App";
 import styles from "./EstimateForm.module.css";
 
