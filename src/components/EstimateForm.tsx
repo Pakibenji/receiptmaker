@@ -1,7 +1,12 @@
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import { Estimate } from "../App";
 import styles from "./EstimateForm.module.css";
-export default function EstimateForm() {
+
+type estimateFormProps = {
+  onEstimateCreate: (data: Estimate) => void;
+};
+
+export default function EstimateForm({ onEstimateCreate }: estimateFormProps) {
   const {
     register,
     handleSubmit,
@@ -14,7 +19,9 @@ export default function EstimateForm() {
     control,
   });
 
-  const onSubmit: SubmitHandler<Estimate> = (data) => console.log(data);
+  function onSubmit(data: Estimate) {
+    onEstimateCreate(data);
+  }
 
   return (
     // eslint-disable-next-line @typescript-eslint/no-misused-promises

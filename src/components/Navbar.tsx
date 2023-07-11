@@ -6,6 +6,7 @@ export default function App() {
       <NavLink to="/">Home</NavLink>
       <NavLink to="/new-estimate">New estimate</NavLink>
       <NavLink to="/new-receipt">New Receipt</NavLink>
+      <NavLink to="/my-estimates">My estimates</NavLink>
       <NavLink to="/pricing">Pricing</NavLink>
     </nav>
   );
