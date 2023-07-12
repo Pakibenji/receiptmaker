@@ -13,4 +13,12 @@ export class EstimateService {
     readEstimate(): Estimate[] {
         return this.estimateCollection;
     }
+
+    getEstimateByID(id: string): Estimate | undefined {
+        const result = this.estimateCollection.find((est) => est.id === id);
+        if (result === undefined) {
+            return undefined;
+        }
+        return result
+    }
 }

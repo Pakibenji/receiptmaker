@@ -8,6 +8,7 @@ import EstimatePage from "./pages/EstimatePage";
 import { createContext } from "react";
 import { EstimateService } from "./services/estimateService";
 import MyEstimates from "./pages/MyEstimate";
+import EstimateDetails from "./pages/EstimateDetails";
 
 export type Task = {
   reference: string;
@@ -92,6 +93,7 @@ function App() {
         <Route path="/new-estimate" element={<EstimatePage />} />
         <Route path="/new-receipt" element={<Receipt />} />
         <Route path="/my-estimates" element={<MyEstimates />} />
+        <Route path="/my-estimates/:id" element={<EstimateDetails />} />
         <Route path="/pricing" element={<Pricing />} />
       </Routes>
     </>

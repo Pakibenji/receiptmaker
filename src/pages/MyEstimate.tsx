@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { EstimateCtx } from "../App";
 import { EstimateService } from "../services/estimateService";
 import PDFprinter from "../services/PDFprinter";
-import Card from "../components/Card";
+import EstimateSummary from "../components/EstimateSummary";
 
 export default function MyEstimates() {
   const estimateSrv = useContext<EstimateService>(EstimateCtx);
@@ -13,7 +13,7 @@ export default function MyEstimates() {
       <div>TODO list all estimates</div>
       <PDFprinter>
         {estimates.map((est) => (
-          <Card data={est} key={est.id} />
+          <EstimateSummary data={est} key={est.id} />
         ))}
       </PDFprinter>
     </>
