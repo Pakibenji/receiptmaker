@@ -6,7 +6,11 @@ type cardProps = {
 };
 
 export default function Card({ data }: cardProps) {
-  function calculateSubTotal(quantity: number, unitPrice: number) {
+  function calculateSubTotal(
+    quantity: number,
+    unitPrice: number,
+    deposit: number
+  ) {
     return (quantity * unitPrice).toFixed(2);
   }
 
@@ -15,6 +19,13 @@ export default function Card({ data }: cardProps) {
       return acc + curr.quantity * curr.unitPrice;
     }, 0);
     return totalBeforeTaxes;
+  }
+
+  function calculateTotalDeposits() {
+    const totalDeposits = data.tasks.reduce((acc, curr) => {
+      return acc + curr.deposit;
+    }, 0);
+    return totalDeposits;
   }
 
   function calculateTaxes() {
@@ -46,7 +57,9 @@ export default function Card({ data }: cardProps) {
               <div>{task.unitPrice}</div>
               <div>{task.deposit}</div>
               <div>{task.vat}%</div>
-              <div>{calculateSubTotal(task.quantity, task.unitPrice)}</div>
+              <div>
+                {calculateSubTotal(task.quantity, task.unitPrice, task.deposit)}
+              </div>
             </div>
           );
         })}
@@ -54,12 +67,18 @@ export default function Card({ data }: cardProps) {
           <div className={styles.total}>
             <div>Total (whithout taxes)</div>
             <div>€ {calculateTotalWithoutTaxes().toFixed(2)}</div>
-
+            <div>Total Deposits</div>
+            <div>€ {calculateTotalDeposits().toFixed(2)}</div>
             <div>Total Taxes</div>
             <div>{calculateTaxes().toFixed(2)}</div>
             <div>Total taxes included</div>
             <div className={styles.totalwithtaxes}>
-              € {(calculateTotalWithoutTaxes() + calculateTaxes()).toFixed(2)}
+              €{" "}
+              {(
+                calculateTotalWithoutTaxes() +
+                calculateTaxes() +
+                calculateTotalDeposits()
+              ).toFixed(2)}
             </div>
           </div>
         </div>

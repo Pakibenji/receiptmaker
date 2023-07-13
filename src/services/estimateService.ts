@@ -8,6 +8,10 @@ export class EstimateService {
     }
 
     createEstimate(data: Estimate) {
+        if (data.id === undefined) {
+            data.id = Math.random().toString(3
+            );
+        }
         this.estimateCollection = [data, ...this.estimateCollection];
     }
     readEstimate(): Estimate[] {

@@ -1,5 +1,6 @@
 import { Estimate } from "../App";
 import { Link } from "react-router-dom";
+import styles from "./EstimateSummary.module.css";
 
 type EstimateSummaryProps = {
   data: Estimate;
@@ -7,7 +8,7 @@ type EstimateSummaryProps = {
 
 export default function EstimateSummary({ data }: EstimateSummaryProps) {
   return (
-    <div>
+    <div className={styles.summary}>
       <h4>{data.title}</h4>
       <div>
         Estimate date: {new Date(data.estimateDate).toLocaleDateString("en-US")}
